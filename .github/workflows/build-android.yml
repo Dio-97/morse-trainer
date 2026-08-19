@@ -9,6 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # KS va dichiarato qui: il contesto secrets non e' leggibile nell'if di uno
+    # step, e l'env definito dentro lo step stesso non vale per il suo if.
+    env:
+      KS: ${{ secrets.KEYSTORE_BASE64 }}
     steps:
       - uses: actions/checkout@v4
 
@@ -72,13 +76,11 @@ jobs:
       # ── Pacchetto firmato per il Play Store ──
       # Si attiva da solo appena aggiungi i quattro segreti indicati nella guida
       - name: Ricostruisci il keystore
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
-        env:
-          KS: ${{ secrets.KEYSTORE_BASE64 }}
+        if: env.KS != ''
         run: echo "$KS" | base64 -d > android/release.jks
 
       - name: Compila il bundle firmato
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        if: env.KS != ''
         env:
           PW: ${{ secrets.KEYSTORE_PASSWORD }}
           AL: ${{ secrets.KEY_ALIAS }}
@@ -92,7 +94,7 @@ jobs:
             -Pandroid.injected.signing.key.password="$AP"
 
       - name: Pubblica il bundle
-        if: ${{ secrets.KEYSTORE_BASE64 != '' }}
+        if: env.KS != ''
         uses: actions/upload-artifact@v4
         with:
           name: morse-trainer-aab
