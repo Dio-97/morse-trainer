@@ -1,0 +1,25 @@
+{
+  "appId": "com.oni.morsetrainer",
+  "appName": "Morse Code Trainer",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#16181a"
+  },
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 800,
+      "backgroundColor": "#16181a",
+      "androidSplashResourceName": "splash",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#16181a",
+      "overlaysWebView": true
+    }
+  }
+}

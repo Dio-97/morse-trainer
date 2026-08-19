@@ -1,0 +1,22 @@
+{
+  "name": "morse-trainer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Morse code trainer for emergency communication",
+  "scripts": {
+    "sync": "cap sync android",
+    "open": "cap open android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.3.1",
+    "@capacitor/core": "^8.3.1",
+    "@capacitor/splash-screen": "^8.0.0",
+    "@capacitor/status-bar": "^8.0.0",
+    "@fontsource/archivo": "^5.0.0",
+    "@fontsource/ibm-plex-mono": "^5.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.3.1"
+  }
+}
